@@ -1,0 +1,1576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Drisyant Studio — Premium Creative Assets</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════════
+   ROOT & RESET
+═══════════════════════════════════════════════ */
+:root{
+  --bg:#02020a;
+  --bg2:#060612;
+  --card:#0a0a1a;
+  --card2:#0e0e22;
+  --border:rgba(100,80,255,0.12);
+  --border-glow:rgba(100,80,255,0.35);
+
+  --p:#7c5cfc;
+  --p2:#c45cfc;
+  --p3:#5cf4fc;
+  --gold:#ffd166;
+  --green:#3dffa0;
+  --red:#ff3d6e;
+  --orange:#ff8c3d;
+
+  --glow-p:rgba(124,92,252,0.4);
+  --glow-p2:rgba(196,92,252,0.3);
+  --glow-3:rgba(92,244,252,0.25);
+
+  --txt:#f0eeff;
+  --txt2:#b8b4d8;
+  --muted:#5a5878;
+
+  --font-h:'Poppins',sans-serif;
+  --font-b:'Poppins',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--txt);font-family:var(--font-b);overflow-x:hidden;cursor:none;letter-spacing:0.03em}
+
+/* ═══════════════════════════════════════════════
+   ANIMATED BACKGROUND
+═══════════════════════════════════════════════ */
+#bg-canvas{position:fixed;inset:0;z-index:0;pointer-events:none}
+.noise{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.4;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.04'/%3E%3C/svg%3E")}
+
+/* ═══════════════════════════════════════════════
+   CURSOR
+═══════════════════════════════════════════════ */
+/* CURSOR */
+
+#dot{
+  position:fixed;
+  width:10px;
+  height:10px;
+  background:#ffffff;
+  border-radius:50%;
+  pointer-events:none;
+  z-index:9999;
+  mix-blend-mode:screen;
+  transition:transform .02s ease;
+
+  box-shadow:
+    0 0 6px #fff,
+    0 0 14px rgba(255,255,255,.9),
+    0 0 28px rgba(255,255,255,.7),
+    0 0 45px rgba(255,255,255,.45);
+}
+
+#ring{
+  position:fixed;
+  width:34px;
+  height:34px;
+  border:1.5px solid rgba(255,255,255,.85);
+  border-radius:50%;
+  pointer-events:none;
+  z-index:9998;
+
+  transition:
+    transform .14s ease,
+    width .22s ease,
+    height .22s ease,
+    border-color .22s ease;
+
+  box-shadow:
+    0 0 10px rgba(255,255,255,.6),
+    0 0 24px rgba(255,255,255,.35),
+    inset 0 0 10px rgba(255,255,255,.15);
+
+  backdrop-filter:blur(3px);
+}
+
+#ring.hov{
+  width:56px;
+  height:56px;
+  border-color:#ffffff;
+
+  box-shadow:
+    0 0 14px rgba(255,255,255,.95),
+    0 0 35px rgba(255,255,255,.75),
+    0 0 65px rgba(255,255,255,.45);
+}
+
+/* ═══════════════════════════════════════════════
+   FLOATING PARTICLES
+═══════════════════════════════════════════════ */
+.particle{position:fixed;border-radius:50%;pointer-events:none;z-index:2;animation:float-p linear infinite;opacity:0}
+@keyframes float-p{
+  0%{transform:translateY(100vh) scale(0);opacity:0}
+  10%{opacity:1}
+  90%{opacity:.6}
+  100%{transform:translateY(-10vh) scale(1);opacity:0}
+}
+
+/* ═══════════════════════════════════════════════
+   NAVBAR
+═══════════════════════════════════════════════ */
+nav{
+  position:fixed;inset:0 0 auto;z-index:1000;
+  padding:0 52px;height:68px;
+  display:flex;align-items:center;justify-content:space-between;
+  backdrop-filter:blur(28px) saturate(180%);
+  background:rgba(2,2,10,.75);
+  border-bottom:1px solid var(--border);
+}
+nav::after{
+  content:'';position:absolute;bottom:0;left:10%;right:10%;height:1px;
+  background:linear-gradient(90deg,transparent,var(--p),var(--p2),var(--p3),transparent);
+  opacity:.4;
+}
+.logo{
+  font-family:var(--font-h);font-weight:800;font-size:1.2rem;letter-spacing:-.03em;
+  background:linear-gradient(135deg,var(--p),var(--p2),var(--p3));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  position:relative;
+}
+.logo::after{
+  content:'STUDIO';position:absolute;left:0;top:0;
+  font-family:var(--font-h);font-weight:800;font-size:1.2rem;letter-spacing:-.03em;
+  background:linear-gradient(135deg,var(--p),var(--p2),var(--p3));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  filter:blur(14px);z-index:-1;opacity:.7;
+}
+.nav-links{display:flex;align-items:center;gap:34px}
+.nav-links a{color:var(--txt2);text-decoration:none;font-size:.87rem;font-weight:500;transition:color .2s;letter-spacing:.01em}
+.nav-links a:hover{color:var(--txt)}
+.nav-pill{
+  background:linear-gradient(135deg,var(--p),var(--p2));
+  color:#fff!important;padding:9px 22px;border-radius:100px;
+  font-weight:600!important;font-size:.82rem!important;
+  box-shadow:0 0 24px var(--glow-p);
+  animation:pulse-nav 3s ease infinite;
+}
+@keyframes pulse-nav{
+  0%,100%{box-shadow:0 0 24px var(--glow-p)}
+  50%{box-shadow:0 0 44px rgba(124,92,252,.7)}
+}
+.nav-status{display:flex;align-items:center;gap:8px;font-size:.76rem;color:var(--green);font-weight:600}
+.status-dot{width:7px;height:7px;background:var(--green);border-radius:50%;animation:blink-s 2s ease infinite;box-shadow:0 0 8px var(--green)}
+@keyframes blink-s{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
+
+/* ═══════════════════════════════════════════════
+   HERO
+═══════════════════════════════════════════════ */
+.hero{
+  min-height:100vh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;text-align:center;
+  padding:130px 24px 80px;position:relative;z-index:3;overflow:hidden;
+}
+
+/* Grid floor */
+.grid-3d{
+  position:absolute;bottom:-80px;left:50%;
+  width:1600px;height:600px;
+  background:linear-gradient(rgba(124,92,252,.1) 1px,transparent 1px),
+             linear-gradient(90deg,rgba(124,92,252,.1) 1px,transparent 1px);
+  background-size:70px 70px;
+  transform:translateX(-50%) perspective(600px) rotateX(68deg);
+  transform-origin:bottom center;
+  mask-image:radial-gradient(ellipse 80% 60% at 50% 100%,black 20%,transparent 100%);
+  pointer-events:none;animation:grid-shift 8s ease-in-out infinite;
+}
+@keyframes grid-shift{
+  0%,100%{background-position:0 0,0 0}
+  50%{background-position:0 35px,0 0}
+}
+/* Central glow beam */
+.beam{
+  position:absolute;top:0;left:50%;transform:translateX(-50%);
+  width:2px;height:65%;
+  background:linear-gradient(180deg,transparent,var(--p),var(--p2),transparent);
+  opacity:.35;filter:blur(2px);pointer-events:none;
+  animation:beam-pulse 4s ease infinite;
+}
+.beam::before{
+  content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);
+  width:200px;height:100%;
+  background:linear-gradient(180deg,transparent,rgba(124,92,252,.08),transparent);
+  filter:blur(40px);
+}
+@keyframes beam-pulse{0%,100%{opacity:.35}50%{opacity:.65}}
+
+/* Badge */
+.badge{
+  display:inline-flex;align-items:center;gap:9px;
+  background:rgba(124,92,252,.1);
+  border:1px solid rgba(124,92,252,.28);
+  border-radius:100px;padding:7px 18px;
+  font-size:.75rem;color:var(--p);font-weight:600;
+  letter-spacing:.08em;text-transform:uppercase;margin-bottom:32px;
+  animation:up .8s ease both;
+  box-shadow:0 0 20px rgba(124,92,252,.15),inset 0 0 20px rgba(124,92,252,.05);
+}
+.badge-dot{width:6px;height:6px;background:var(--green);border-radius:50%;
+  animation:blink-s 1.8s ease infinite;box-shadow:0 0 6px var(--green)}
+
+/* Heading */
+.hero h1{
+  font-family:var(--font-h);
+  font-size:clamp(3.5rem,9vw,8.5rem);
+  font-weight:800;letter-spacing:-.05em;line-height:.92;
+  margin-bottom:28px;animation:up .8s .1s ease both;
+  position:relative;
+}
+.hw{display:block;color:var(--txt)}
+.hg{
+  display:block;
+  background:linear-gradient(135deg,var(--p) 0%,var(--p2) 40%,var(--p3) 80%,var(--gold) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-size:200% 200%;animation:grad-shift 5s ease infinite;
+  filter:drop-shadow(0 0 30px rgba(124,92,252,.5));
+}
+.hi{display:block;color:#ffffff;font-style:normal;font-size:clamp(2rem,5vw,5rem);letter-spacing:0.007em}
+@keyframes grad-shift{
+  0%,100%{background-position:0% 50%}50%{background-position:100% 50%}
+}
+
+.hero p{
+  max-width:560px;color:var(--txt2);font-size:1.05rem;
+  line-height:1.78;margin-bottom:44px;
+  animation:up .8s .2s ease both;
+}
+.btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;animation:up .8s .3s ease both}
+
+.btn-main{
+  display:inline-flex;align-items:center;gap:10px;
+  background:linear-gradient(135deg,var(--p),var(--p2));
+  color:#fff;padding:16px 36px;border-radius:100px;
+  font-size:.95rem;font-weight:600;text-decoration:none;
+  box-shadow:0 0 44px rgba(124,92,252,.45),inset 0 1px 0 rgba(255,255,255,.2);
+  transition:transform .2s,box-shadow .2s;position:relative;overflow:hidden;
+}
+.btn-main::before{
+  content:'';position:absolute;top:-50%;left:-60%;width:40%;height:200%;
+  background:rgba(255,255,255,.15);transform:skewX(-20deg);
+  transition:left .5s;
+}
+.btn-main:hover::before{left:140%}
+.btn-main:hover{transform:translateY(-3px);box-shadow:0 0 70px rgba(124,92,252,.7)}
+
+.btn-out{
+  display:inline-flex;align-items:center;gap:10px;
+  background:rgba(255,255,255,.04);
+  border:1px solid var(--border-glow);
+  color:var(--txt);padding:16px 36px;border-radius:100px;
+  font-size:.95rem;font-weight:500;text-decoration:none;
+  backdrop-filter:blur(10px);
+  transition:background .2s,border-color .2s,transform .2s,box-shadow .2s;
+}
+.btn-out:hover{
+  background:rgba(124,92,252,.12);border-color:var(--p);
+  transform:translateY(-2px);box-shadow:0 0 30px rgba(124,92,252,.2);
+}
+
+/* Stats */
+.stats-row{
+  display:flex;justify-content:center;gap:0;
+  border:1px solid var(--border);border-radius:20px;overflow:hidden;
+  background:rgba(10,10,26,.8);backdrop-filter:blur(20px);
+  margin-top:64px;animation:up .8s .4s ease both;
+  box-shadow:0 0 60px rgba(124,92,252,.08);
+}
+.stat{
+  padding:24px 44px;border-right:1px solid var(--border);
+  text-align:center;position:relative;
+}
+.stat:last-child{border-right:none}
+.stat::after{
+  content:'';position:absolute;bottom:0;left:20%;right:20%;height:2px;
+  background:linear-gradient(90deg,transparent,var(--p),transparent);opacity:0;
+  transition:opacity .3s;
+}
+.stat:hover::after{opacity:1}
+.sn{
+  font-family:var(--font-h);font-size:2.2rem;font-weight:800;
+  background:linear-gradient(135deg,var(--txt),var(--p));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;display:block;
+}
+.sl{font-size:.73rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-top:4px}
+
+@keyframes up{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+
+/* ═══════════════════════════════════════════════
+   MARQUEE
+═══════════════════════════════════════════════ */
+.mq{overflow:hidden;border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+  padding:16px 0;background:rgba(124,92,252,.03);position:relative;z-index:3}
+.mq::before,.mq::after{
+  content:'';position:absolute;top:0;width:120px;height:100%;z-index:2;
+}
+.mq::before{left:0;background:linear-gradient(90deg,var(--bg),transparent)}
+.mq::after{right:0;background:linear-gradient(-90deg,var(--bg),transparent)}
+.mq-t{display:flex;gap:52px;white-space:nowrap;animation:scroll 22s linear infinite;width:max-content}
+.mq-i{font-family:var(--font-h);font-size:.78rem;font-weight:700;text-transform:uppercase;
+  letter-spacing:.13em;color:var(--muted);display:flex;align-items:center;gap:14px}
+.mq-d{color:var(--p);animation:blink-s 2s ease infinite}
+@keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ═══════════════════════════════════════════════
+   SECTION HELPERS
+═══════════════════════════════════════════════ */
+.sec{padding:110px 56px;max-width:1320px;margin:0 auto;position:relative;z-index:3}
+.sec-dark{background:var(--bg2);position:relative;z-index:3}
+.sec-dark>.sec{padding:110px 56px}
+.tag{font-size:.7rem;text-transform:uppercase;letter-spacing:.14em;color:var(--p);
+  font-weight:700;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.tag::before{content:'';width:20px;height:1.5px;background:linear-gradient(90deg,var(--p),var(--p2))}
+.sh{font-family:var(--font-h);font-size:clamp(2rem,4vw,3.5rem);
+  font-weight:800;letter-spacing:-.04em;line-height:1.05;margin-bottom:18px}
+.ss{color:var(--txt2);font-size:.98rem;line-height:1.75;max-width:500px;margin-bottom:60px}
+
+/* glow dividers */
+.glow-line{
+  height:1px;
+  background:linear-gradient(90deg,transparent,var(--p),var(--p2),var(--p3),transparent);
+  opacity:.2;margin:0;position:relative;z-index:3;
+}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(32px);transition:opacity .7s ease,transform .7s ease}
+.rv.on{opacity:1;transform:translateY(0)}
+.rv2{opacity:0;transform:translateY(32px) scale(.97);
+  transition:opacity .6s ease,transform .6s cubic-bezier(.34,1.56,.64,1)}
+.rv2.on{opacity:1;transform:translateY(0) scale(1)}
+
+/* ═══════════════════════════════════════════════
+   § 1  PORTFOLIO
+═══════════════════════════════════════════════ */
+.port-grid{
+  display:grid;grid-template-columns:1.35fr 1fr 1fr;
+  grid-template-rows:260px 220px;gap:16px;
+}
+.pi{
+  border-radius:18px;overflow:hidden;position:relative;
+  cursor:pointer;transition:transform .35s cubic-bezier(.34,1.56,.64,1),box-shadow .35s;
+}
+.pi:hover{transform:translateY(-6px) scale(1.01)}
+.pi.big{grid-row:span 2}
+.pi-bg{
+  width:100%;height:100%;display:flex;align-items:center;justify-content:center;
+  font-size:4rem;position:relative;
+}
+.pi-bg::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(124,92,252,.15),rgba(196,92,252,.1));
+  opacity:0;transition:opacity .3s;
+}
+.pi:hover .pi-bg::before{opacity:1}
+.bg1{background:linear-gradient(135deg,#0a0428 0%,#1e0860 50%,#3810a8 100%)}
+.bg2{background:linear-gradient(135deg,#040e20 0%,#0e2850 50%,#183890 100%)}
+.bg3{background:linear-gradient(135deg,#1a0a06 0%,#44200e 50%,#703014 100%)}
+.bg4{background:linear-gradient(135deg,#06180a 0%,#0e4018 50%,#146828 100%)}
+.bg5{background:linear-gradient(135deg,#1a0618 0%,#440e3c 50%,#701464 100%)}
+.pi-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(0deg,rgba(0,0,0,.9) 0%,rgba(0,0,0,.3) 40%,transparent 70%);
+  opacity:0;transition:opacity .3s;display:flex;align-items:flex-end;padding:22px;
+}
+.pi:hover .pi-overlay{opacity:1}
+.pi-glow{
+  position:absolute;inset:0;
+  box-shadow:inset 0 0 40px rgba(124,92,252,.0);
+  transition:box-shadow .3s;
+  border:1px solid rgba(124,92,252,.0);
+  border-radius:18px;
+  transition:all .3s;
+}
+.pi:hover .pi-glow{
+  box-shadow:inset 0 0 40px rgba(124,92,252,.15),0 0 30px rgba(124,92,252,.2);
+  border-color:rgba(124,92,252,.4);
+}
+.pi-shine{position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.07) 0%,transparent 50%);pointer-events:none}
+.pi-lbl{font-family:var(--font-h);font-weight:700;font-size:.9rem;color:#fff}
+.pi-cat{font-size:.72rem;color:rgba(255,255,255,.55);text-transform:uppercase;letter-spacing:.07em;margin-top:2px}
+
+/* about card */
+.about-strip{
+  margin-top:52px;
+  background:linear-gradient(135deg,rgba(124,92,252,.08),rgba(196,92,252,.04));
+  border:1px solid rgba(124,92,252,.18);border-radius:22px;
+  padding:38px 44px;display:flex;align-items:center;gap:40px;flex-wrap:wrap;
+  position:relative;overflow:hidden;
+}
+.about-strip::before{
+  content:'';position:absolute;top:-60px;right:-60px;
+  width:200px;height:200px;
+  background:radial-gradient(circle,rgba(124,92,252,.2),transparent 70%);
+  filter:blur(40px);pointer-events:none;
+}
+.about-av{
+  width:72px;height:72px;border-radius:50%;
+  background:linear-gradient(135deg,var(--p),var(--p2));
+  display:flex;align-items:center;justify-content:center;
+  font-size:2rem;flex-shrink:0;
+  box-shadow:0 0 30px var(--glow-p);
+  animation:pulse-av 3s ease infinite;
+}
+@keyframes pulse-av{
+  0%,100%{box-shadow:0 0 30px var(--glow-p)}
+  50%{box-shadow:0 0 56px rgba(124,92,252,.7)}
+}
+.about-nums{display:flex;gap:16px;flex-wrap:wrap}
+.anum{
+  text-align:center;background:rgba(124,92,252,.1);
+  border:1px solid rgba(124,92,252,.18);border-radius:14px;padding:14px 22px;
+  transition:transform .2s,box-shadow .2s;
+}
+.anum:hover{transform:translateY(-3px);box-shadow:0 0 20px var(--glow-p)}
+.anum-n{font-family:var(--font-h);font-size:1.6rem;font-weight:800;background:linear-gradient(135deg,var(--p),var(--p2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.anum-l{font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.07em}
+
+/* ═══════════════════════════════════════════════
+   § 2  MEDIA (VIDEOS & THUMBNAILS)
+═══════════════════════════════════════════════ */
+.media-tabs{
+  display:flex;gap:6px;background:rgba(255,255,255,.04);
+  border:1px solid var(--border);border-radius:100px;
+  padding:5px;width:fit-content;margin-bottom:52px;
+}
+.mt{
+  padding:10px 28px;border-radius:100px;font-size:.86rem;
+  font-weight:500;cursor:pointer;color:var(--txt2);
+  border:none;background:none;font-family:var(--font-b);
+  transition:all .25s;
+}
+.mt.on{
+  background:linear-gradient(135deg,var(--p),var(--p2));
+  color:#fff;box-shadow:0 0 22px var(--glow-p);
+}
+.vids-wrap,.tns-wrap{display:none}
+.vids-wrap.on,.tns-wrap.on{display:block}
+
+.vg{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.vc{
+  background:var(--card);border:1px solid var(--border);border-radius:18px;
+  overflow:hidden;
+  transition:transform .3s,box-shadow .3s,border-color .3s;
+}
+.vc:hover{
+  transform:translateY(-6px);
+  box-shadow:0 24px 56px rgba(0,0,0,.6),0 0 30px rgba(124,92,252,.15);
+  border-color:rgba(124,92,252,.35);
+}
+.vt{width:100%;display:block;aspect-ratio:16/9;object-fit:cover;border-radius:0}
+
+.tn-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.tn{
+  border-radius:14px;overflow:hidden;cursor:pointer;
+  aspect-ratio:16/9;position:relative;
+  transition:transform .3s,box-shadow .3s;
+}
+.tn:hover{transform:scale(1.04) translateY(-4px);box-shadow:0 20px 44px rgba(0,0,0,.55),0 0 20px rgba(124,92,252,.2)}
+.tn-in{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:2.4rem;position:relative}
+.tn-ov{position:absolute;inset:0;background:rgba(0,0,0,.65);opacity:0;transition:opacity .25s;
+  display:flex;align-items:center;justify-content:center;padding:12px;text-align:center}
+.tn:hover .tn-ov{opacity:1}
+.tn-l{font-family:var(--font-h);font-weight:700;font-size:.74rem;color:#fff}
+.tn-shine{position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.09) 0%,transparent 55%);pointer-events:none}
+
+/* ═══════════════════════════════════════════════
+   § 3  STORE
+═══════════════════════════════════════════════ */
+.store-tabs{
+  display:flex;gap:6px;background:rgba(255,255,255,.04);
+  border:1px solid var(--border);border-radius:100px;
+  padding:5px;width:fit-content;margin-bottom:52px;
+}
+.st{padding:10px 28px;border-radius:100px;font-size:.86rem;font-weight:500;
+  cursor:pointer;color:var(--txt2);border:none;background:none;font-family:var(--font-b);transition:all .25s}
+.st.on{background:linear-gradient(135deg,var(--p),var(--p2));color:#fff;box-shadow:0 0 22px var(--glow-p)}
+
+.sg{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.pc{
+  background:var(--card);border:1px solid var(--border);border-radius:20px;
+  overflow:hidden;cursor:pointer;position:relative;
+  transition:transform .35s cubic-bezier(.34,1.56,.64,1),box-shadow .35s,border-color .3s;
+  transform-style:preserve-3d;
+}
+.pc:hover{
+  transform:translateY(-10px) scale(1.015) rotateX(-2deg);
+  box-shadow:0 36px 72px rgba(0,0,0,.6),0 0 50px rgba(124,92,252,.2);
+  border-color:rgba(124,92,252,.4);
+}
+.pt{height:200px;display:flex;align-items:center;justify-content:center;font-size:4rem;position:relative;overflow:hidden}
+.psh{position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.08) 0%,transparent 55%);pointer-events:none}
+.pglow{
+  position:absolute;inset:0;
+  background:radial-gradient(ellipse 80% 50% at 50% 100%,rgba(124,92,252,.2),transparent);
+  opacity:0;transition:opacity .3s;pointer-events:none;
+}
+.pc:hover .pglow{opacity:1}
+.pbadge{
+  position:absolute;top:12px;right:12px;padding:4px 11px;
+  border-radius:100px;font-size:.66rem;font-weight:700;
+  text-transform:uppercase;letter-spacing:.06em;
+}
+.pb-b{background:linear-gradient(135deg,var(--gold),#ff9800);color:#06060e}
+.pb-h{background:linear-gradient(135deg,var(--orange),var(--red));color:#fff}
+.pb-n{background:linear-gradient(135deg,var(--green),#00d898);color:#06060e}
+.pb-s{background:linear-gradient(135deg,var(--p),var(--p2));color:#fff}
+.pb{padding:20px}
+.pcat{font-size:.68rem;color:var(--p);text-transform:uppercase;letter-spacing:.11em;font-weight:700;margin-bottom:7px}
+.pname{font-family:var(--font-h);font-weight:700;font-size:1rem;margin-bottom:8px}
+.pdesc{font-size:.8rem;color:var(--txt2);line-height:1.6;margin-bottom:16px}
+.pfoot{display:flex;align-items:center;justify-content:space-between}
+.pprice{font-family:var(--font-h);font-weight:800;font-size:1.22rem;
+  background:linear-gradient(135deg,var(--p),var(--p2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.pold{font-size:.76rem;color:var(--muted);text-decoration:line-through;
+  display:block;-webkit-text-fill-color:var(--muted);font-family:var(--font-b)}
+.bb{
+  background:linear-gradient(135deg,var(--p),var(--p2));color:#fff;
+  border:none;padding:9px 20px;border-radius:100px;font-size:.8rem;
+  font-weight:600;cursor:pointer;font-family:var(--font-b);
+  transition:transform .2s,box-shadow .2s;
+  box-shadow:0 0 16px var(--glow-p);
+}
+.bb:hover{transform:scale(1.08);box-shadow:0 0 28px rgba(124,92,252,.7)}
+
+/* Features strip */
+.feat-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:0;
+}
+.feat{
+  background:var(--card);border:1px solid var(--border);border-radius:18px;
+  padding:28px;transition:border-color .3s,transform .3s,box-shadow .3s;
+  position:relative;overflow:hidden;
+}
+.feat::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--p),var(--p2));
+  transform:scaleX(0);transform-origin:left;transition:transform .35s;
+}
+.feat:hover{
+  border-color:rgba(124,92,252,.35);
+  transform:translateY(-4px);
+  box-shadow:0 20px 48px rgba(0,0,0,.4),0 0 24px rgba(124,92,252,.1);
+}
+.feat:hover::after{transform:scaleX(1)}
+.ficon{
+  width:46px;height:46px;border-radius:13px;
+  background:rgba(124,92,252,.12);border:1px solid rgba(124,92,252,.18);
+  display:flex;align-items:center;justify-content:center;font-size:1.3rem;
+  margin-bottom:18px;
+  box-shadow:0 0 16px rgba(124,92,252,.12);
+}
+.ft{font-family:var(--font-h);font-weight:700;font-size:.95rem;margin-bottom:9px}
+.fd{font-size:.82rem;color:var(--txt2);line-height:1.65}
+
+/* ═══════════════════════════════════════════════
+   § 4  REVIEWS
+═══════════════════════════════════════════════ */
+.rat-sum{
+  display:flex;align-items:center;gap:44px;
+  background:var(--card);border:1px solid var(--border);border-radius:22px;
+  padding:34px 40px;margin-bottom:48px;
+  box-shadow:0 0 50px rgba(124,92,252,.06);
+  position:relative;overflow:hidden;
+}
+.rat-sum::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(124,92,252,.05),transparent 60%);
+  pointer-events:none;
+}
+.rb{font-family:var(--font-h);font-size:3.8rem;font-weight:800;
+  background:linear-gradient(135deg,var(--p),var(--gold));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1}
+.r-stars{font-size:1rem;color:var(--gold);letter-spacing:2px;margin:5px 0}
+.r-total{font-size:.76rem;color:var(--muted)}
+.r-bars{flex:1;display:flex;flex-direction:column;gap:10px}
+.rbar{display:flex;align-items:center;gap:12px;font-size:.78rem;color:var(--muted)}
+.rb-t{flex:1;height:5px;background:rgba(255,255,255,.06);border-radius:100px;overflow:hidden}
+.rb-f{height:100%;border-radius:100px;background:linear-gradient(90deg,var(--p),var(--gold));
+  transition:width 1.5s cubic-bezier(.19,1,.22,1);width:0}
+.rb-f.on{width:var(--w)}
+
+.rg{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.rc{
+  background:var(--card);border:1px solid var(--border);border-radius:20px;padding:26px;
+  transition:border-color .3s,transform .3s,box-shadow .3s;position:relative;overflow:hidden;
+}
+.rc::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,var(--p),var(--p2),transparent);
+  opacity:0;transition:opacity .3s;
+}
+.rc:hover{
+  border-color:rgba(124,92,252,.3);transform:translateY(-4px);
+  box-shadow:0 20px 44px rgba(0,0,0,.4),0 0 20px rgba(124,92,252,.08);
+}
+.rc:hover::before{opacity:.7}
+.r-s{font-size:.82rem;color:var(--gold);letter-spacing:2px;margin-bottom:12px}
+.r-t{font-size:.87rem;line-height:1.73;color:var(--txt);margin-bottom:18px;font-style:italic}
+.r-a{display:flex;align-items:center;gap:11px}
+.rav{
+  width:36px;height:36px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--font-h);font-weight:800;font-size:.85rem;color:#fff;
+  flex-shrink:0;
+}
+.ra1{background:linear-gradient(135deg,var(--p),var(--p2))}
+.ra2{background:linear-gradient(135deg,var(--orange),var(--red))}
+.ra3{background:linear-gradient(135deg,var(--green),#00b090);color:#06060e}
+.ra4{background:linear-gradient(135deg,var(--gold),#ff9800);color:#06060e}
+.ra5{background:linear-gradient(135deg,#a356ff,var(--p))}
+.ra6{background:linear-gradient(135deg,var(--red),var(--orange))}
+.rn{font-weight:600;font-size:.86rem}
+.rr{font-size:.72rem;color:var(--muted)}
+
+/* ═══════════════════════════════════════════════
+   § 5  CONTACT
+═══════════════════════════════════════════════ */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
+.cform{
+  background:var(--card);border:1px solid var(--border);border-radius:22px;padding:38px;
+  position:relative;overflow:hidden;
+}
+.cform::before{
+  content:'';position:absolute;top:-80px;right:-80px;width:200px;height:200px;
+  background:radial-gradient(circle,rgba(124,92,252,.15),transparent 70%);
+  filter:blur(40px);pointer-events:none;
+}
+.cf-h{font-family:var(--font-h);font-weight:800;font-size:1.35rem;margin-bottom:6px}
+.cf-s{font-size:.83rem;color:var(--txt2);margin-bottom:28px}
+.cf-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+.inp{
+  width:100%;background:rgba(255,255,255,.05);
+  border:1px solid var(--border);border-radius:11px;
+  padding:12px 16px;color:var(--txt);font-size:.88rem;
+  font-family:var(--font-b);outline:none;transition:border-color .2s,box-shadow .2s;
+}
+.inp:focus{border-color:var(--p);box-shadow:0 0 16px rgba(124,92,252,.2)}
+.inp::placeholder{color:var(--muted)}
+textarea.inp{resize:vertical;min-height:108px;margin-bottom:14px}
+.cf-btn{
+  width:100%;padding:14px;
+  background:linear-gradient(135deg,var(--p),var(--p2));
+  border:none;border-radius:100px;color:#fff;font-size:.93rem;
+  font-weight:600;cursor:pointer;font-family:var(--font-b);
+  transition:box-shadow .2s,transform .2s;
+  box-shadow:0 0 30px var(--glow-p);
+}
+.cf-btn:hover{box-shadow:0 0 52px rgba(124,92,252,.7);transform:scale(1.02)}
+
+.c-info{padding-top:6px}
+.c-tagline{font-family:var(--font-h);font-weight:800;font-size:2.3rem;letter-spacing:-.04em;line-height:1.12;margin-bottom:18px}
+.c-sub{color:var(--txt2);font-size:.93rem;line-height:1.77;margin-bottom:36px}
+.c-links{display:flex;flex-direction:column;gap:12px}
+.cl{
+  display:flex;align-items:center;gap:15px;padding:15px 20px;
+  background:var(--card);border:1px solid var(--border);border-radius:15px;
+  text-decoration:none;color:var(--txt);
+  transition:border-color .2s,transform .2s,box-shadow .2s;
+}
+.cl:hover{
+  border-color:var(--p);transform:translateX(6px);
+  box-shadow:0 8px 30px rgba(124,92,252,.12);
+}
+.c-ico{
+  width:42px;height:42px;border-radius:11px;display:flex;
+  align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;
+}
+.ic-ig{background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366)}
+.ic-yt{background:#ff0000}
+.ic-em{background:linear-gradient(135deg,var(--p),var(--p2))}
+.ic-wa{background:#25d366}
+.c-name{font-weight:600;font-size:.88rem}
+.c-handle{font-size:.74rem;color:var(--muted)}
+
+/* ═══════════════════════════════════════════════
+   CTA BLOCK
+═══════════════════════════════════════════════ */
+.cta-block{
+  margin:0 56px 100px;
+  background:linear-gradient(135deg,rgba(124,92,252,.12),rgba(196,92,252,.07));
+  border:1px solid rgba(124,92,252,.22);border-radius:28px;
+  padding:80px;text-align:center;position:relative;overflow:hidden;z-index:3;
+}
+.cta-block::before{
+  content:'';position:absolute;width:600px;height:600px;
+  background:radial-gradient(circle,rgba(124,92,252,.14),transparent 65%);
+  top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;
+  animation:cta-pulse 5s ease infinite;
+}
+@keyframes cta-pulse{0%,100%{transform:translate(-50%,-50%) scale(1)}50%{transform:translate(-50%,-50%) scale(1.15)}}
+
+/* ═══════════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════════ */
+.footer{
+  border-top:1px solid var(--border);padding:44px 56px;
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:20px;max-width:1320px;margin:0 auto;
+  position:relative;z-index:3;
+}
+.fl{font-family:var(--font-h);font-weight:800;font-size:1.15rem;
+  background:linear-gradient(135deg,var(--p),var(--p2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.flinks{display:flex;gap:24px}
+.flinks a{color:var(--muted);text-decoration:none;font-size:.82rem;transition:color .2s}
+.flinks a:hover{color:var(--txt)}
+.fcopy{font-size:.76rem;color:var(--muted)}
+.socs{display:flex;gap:10px}
+.so{
+  width:36px;height:36px;background:rgba(255,255,255,.05);
+  border:1px solid var(--border);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  text-decoration:none;font-size:.85rem;
+  transition:background .2s,border-color .2s,transform .2s,box-shadow .2s;
+}
+.so:hover{
+  background:rgba(124,92,252,.15);border-color:var(--p);
+  transform:translateY(-2px);box-shadow:0 0 14px var(--glow-p);
+}
+
+/* ═══════════════════════════════════════════════
+   MODAL + TOAST
+═══════════════════════════════════════════════ */
+.ov{
+  position:fixed;inset:0;background:rgba(0,0,0,.88);
+  backdrop-filter:blur(10px);z-index:5000;
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;pointer-events:none;transition:opacity .3s;
+}
+.ov.open{opacity:1;pointer-events:all}
+.modal{
+  background:var(--card);border:1px solid rgba(124,92,252,.3);
+  border-radius:28px;padding:44px;max-width:460px;width:90%;
+  transform:scale(.88) translateY(22px);
+  transition:transform .38s cubic-bezier(.34,1.56,.64,1);
+  text-align:center;position:relative;
+  box-shadow:0 0 80px rgba(124,92,252,.25);
+}
+.ov.open .modal{transform:scale(1) translateY(0)}
+.mcls{
+  position:absolute;top:14px;right:18px;background:none;border:none;
+  color:var(--muted);font-size:1.25rem;cursor:pointer;transition:color .2s;
+}
+.mcls:hover{color:var(--txt)}
+.m-ico{font-size:2.6rem;margin-bottom:14px;filter:drop-shadow(0 0 16px rgba(124,92,252,.5))}
+.m-h{font-family:var(--font-h);font-size:1.4rem;font-weight:800;margin-bottom:9px}
+.m-p{color:var(--txt2);font-size:.86rem;line-height:1.65;margin-bottom:18px}
+.m-pr{font-family:var(--font-h);font-size:2.3rem;font-weight:800;
+  background:linear-gradient(135deg,var(--p),var(--p2));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:22px}
+.m-in{
+  width:100%;background:rgba(255,255,255,.06);border:1px solid var(--border);
+  border-radius:11px;padding:12px 16px;color:var(--txt);font-size:.88rem;
+  font-family:var(--font-b);outline:none;transition:border-color .2s,box-shadow .2s;margin-bottom:10px;
+}
+.m-in:focus{border-color:var(--p);box-shadow:0 0 16px rgba(124,92,252,.2)}
+.m-in::placeholder{color:var(--muted)}
+.m-btn{
+  width:100%;padding:14px;
+  background:linear-gradient(135deg,var(--p),var(--p2));
+  border:none;border-radius:100px;color:#fff;font-size:.93rem;
+  font-weight:600;cursor:pointer;font-family:var(--font-b);
+  transition:box-shadow .2s,transform .2s;
+  box-shadow:0 0 24px var(--glow-p);
+}
+.m-btn:hover{box-shadow:0 0 44px rgba(124,92,252,.7);transform:scale(1.02)}
+
+.toast{
+  position:fixed;bottom:28px;right:28px;
+  background:var(--card);border:1px solid rgba(61,255,160,.35);
+  border-radius:14px;padding:13px 20px;
+  display:flex;align-items:center;gap:10px;
+  box-shadow:0 16px 40px rgba(0,0,0,.5),0 0 20px rgba(61,255,160,.15);
+  z-index:9001;transform:translateY(90px);opacity:0;
+  transition:transform .42s cubic-bezier(.34,1.56,.64,1),opacity .4s;
+  font-size:.85rem;font-weight:500;
+}
+.toast.on{transform:translateY(0);opacity:1}
+
+/* ═══════════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════════ */
+@media(max-width:900px){
+  nav{padding:0 20px}
+  .nav-links{display:none}
+  .sec{padding:60px 20px}
+  .sec-dark>.sec{padding:60px 20px}
+  .port-grid{grid-template-columns:1fr;grid-template-rows:auto}
+  .pi.big{grid-row:auto}
+  .vg,.sg,.rg,.feat-grid{grid-template-columns:1fr}
+  .tn-grid{grid-template-columns:1fr 1fr}
+  .contact-grid{grid-template-columns:1fr;gap:36px}
+  .stats-row{flex-wrap:wrap}
+  .stat{border-right:none;border-bottom:1px solid var(--border);padding:18px 28px}
+  .cta-block{margin:0 20px 60px;padding:48px 24px}
+  .footer{flex-direction:column;text-align:center}
+  .cf-row{grid-template-columns:1fr}
+  .rat-sum{flex-direction:column;gap:24px}
+  .about-strip{flex-direction:column;gap:24px}
+}
+</style>
+</head>
+<body>
+
+<!-- CANVAS BG -->
+<canvas id="bg-canvas"></canvas>
+<div class="noise"></div>
+
+<!-- CURSOR -->
+<div id="dot"></div>
+<div id="ring"></div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"><span id="t-ico">✅</span><span id="t-msg">Done!</span></div>
+
+<!-- MODAL -->
+<div class="ov" id="ov">
+  <div class="modal">
+    <button class="mcls" onclick="closeModal()">✕</button>
+    <div class="m-ico" id="m-ico"></div>
+    <div class="m-h" id="m-h"></div>
+    <div class="m-p" id="m-p"></div>
+    <div class="m-pr" id="m-pr"></div>
+    <input class="m-in" type="email" placeholder="📧 Your email for instant delivery" />
+    <button class="m-btn" onclick="doPurchase()">🚀 Get Instant Access</button>
+  </div>
+</div>
+
+<!-- ══ NAV ══ -->
+<nav>
+  <div class="logo">Drisyant</div>
+  <div class="nav-links">
+    <a href="#portfolio">Portfolio</a>
+    <a href="#media">Videos</a>
+    <a href="#store">Store</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#contact">Contact</a>
+    <span class="nav-status"><span class="status-dot"></span>Available for work</span>
+    <a href="#store" class="nav-pill">Shop Now →</a>
+  </div>
+</nav>
+
+<!-- ══════════════════════════
+  HERO
+══════════════════════════ -->
+<section class="hero" id="home">
+  <div class="grid-3d"></div>
+  <div class="beam"></div>
+
+  <div class="badge"><span class="badge-dot"></span>India's Premium Creative Editor · 2,400+ Happy Clients</div>
+
+  <h1>
+    <span class="hw">TURN YOUR CLIPS</span>
+    <span class="hg">INTO MASTERPIECES</span>
+    <span class="hi">WITH DRISYANT</span>
+
+  </h1>
+
+  <p>Professional video editor, colorist & content creator. I turn raw footage into cinematic experiences — and sell the exact tools I use daily.</p>
+
+  <div class="btns">
+    <a href="#portfolio" class="btn-main">🎬 View Portfolio</a>
+    <a href="#store" class="btn-out">Shop Premium Packs ↗</a>
+  </div>
+
+  <div class="stats-row rv">
+    <div class="stat"><span class="sn" data-count="2400">0+</span><span class="sl">Happy Clients</span></div>
+    <div class="stat"><span class="sn" data-count="50">0+</span><span class="sl">Premium Packs</span></div>
+    <div class="stat"><span class="sn">4.9 ★</span><span class="sl">Avg Rating</span></div>
+    <div class="stat"><span class="sn" data-count="200">0+</span><span class="sl">Projects Done</span></div>
+    <div class="stat"><span class="sn">24h</span><span class="sl">Delivery</span></div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="mq">
+  <div class="mq-t">
+    <span class="mq-i">Color Grading <span class="mq-d">✦</span></span>
+    <span class="mq-i">Cinematic LUTs <span class="mq-d">✦</span></span>
+    <span class="mq-i">Reels Editing <span class="mq-d">✦</span></span>
+    <span class="mq-i">Thumbnail Design <span class="mq-d">✦</span></span>
+    <span class="mq-i">Motion Graphics <span class="mq-d">✦</span></span>
+    <span class="mq-i">VHS Effects <span class="mq-d">✦</span></span>
+    <span class="mq-i">Premiere Pro <span class="mq-d">✦</span></span>
+    <span class="mq-i">DaVinci Resolve <span class="mq-d">✦</span></span>
+    <span class="mq-i">After Effects <span class="mq-d">✦</span></span>
+    <span class="mq-i">Color Grading <span class="mq-d">✦</span></span>
+    <span class="mq-i">Cinematic LUTs <span class="mq-d">✦</span></span>
+    <span class="mq-i">Reels Editing <span class="mq-d">✦</span></span>
+    <span class="mq-i">Thumbnail Design <span class="mq-d">✦</span></span>
+    <span class="mq-i">Motion Graphics <span class="mq-d">✦</span></span>
+    <span class="mq-i">VHS Effects <span class="mq-d">✦</span></span>
+    <span class="mq-i">Premiere Pro <span class="mq-d">✦</span></span>
+    <span class="mq-i">DaVinci Resolve <span class="mq-d">✦</span></span>
+    <span class="mq-i">After Effects <span class="mq-d">✦</span></span>
+  </div>
+</div>
+<div class="glow-line"></div>
+
+<!-- ══════════════════════════
+  §1 PORTFOLIO
+══════════════════════════ -->
+<section class="sec" id="portfolio">
+  <div class="rv">
+    <div class="tag">My Work</div>
+    <h2 class="sh">Portfolio Showcase</h2>
+    <p class="ss">Cinematic projects, brand films & creative edits — a glimpse into the work I do.</p>
+  </div>
+
+  <div class="port-grid rv2">
+    
+    <!-- BIG VIDEO -->
+    <div class="pi big">
+      <div class="pi-bg bg1" style="min-height:100%; position:relative; overflow:hidden;">
+
+        <video autoplay muted loop playsinline
+          style="
+            width:100%;
+            height:100%;
+            object-fit:cover;
+            position:absolute;
+            inset:0;
+          ">
+          <source src="https://v1.pinimg.com/videos/mc/720p/26/db/d0/26dbd0f003c30e9ad9cf2affbe3002b3.mp4" type="video/mp4">
+        </video>
+
+        <div class="pi-shine"></div>
+      </div>
+
+      <div class="pi-glow"></div>
+
+      <div class="pi-overlay">
+        <div>
+          <div class="pi-lbl"></div>
+          <div class="pi-cat"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VIDEO 2 -->
+    <div class="pi">
+      <div class="pi-bg bg2" style="min-height:240px; position:relative; overflow:hidden;">
+
+        <video autoplay muted loop playsinline
+          style="
+            width:100%;
+            height:100%;
+            object-fit:cover;
+            position:absolute;
+            inset:0;
+          ">
+          <source src="https://v1.pinimg.com/videos/iht/expMp4/56/a7/35/56a73501ff230f8420746943527dac05_720w.mp4" type="video/mp4">
+        </video>
+
+        <div class="pi-shine"></div>
+      </div>
+
+      <div class="pi-glow"></div>
+
+      <div class="pi-overlay">
+        <div>
+          <div class="pi-lbl"></div>
+          <div class="pi-cat"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VIDEO 3 -->
+    <div class="pi">
+      <div class="pi-bg bg3" style="min-height:240px; position:relative; overflow:hidden;">
+
+        <video autoplay muted loop playsinline
+          style="
+            width:100%;
+            height:100%;
+            object-fit:cover;
+            position:absolute;
+            inset:0;
+          ">
+          <source src="https://v1.pinimg.com/videos/iht/expMp4/30/90/e7/3090e79b4469744f70cd0042537b4625_720w.mp4" type="video/mp4">
+        </video>
+
+        <div class="pi-shine"></div>
+      </div>
+
+      <div class="pi-glow"></div>
+
+      <div class="pi-overlay">
+        <div>
+          <div class="pi-lbl"></div>
+          <div class="pi-cat"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- IMAGE -->
+    <div class="pi">
+      <div class="pi-bg bg4" style="
+        min-height:200px;
+        background:url('https://i.pinimg.com/736x/c2/1d/77/c21d77eb0bfab811d589ed4b1739bd4a.jpg') center/cover no-repeat;
+      ">
+        <div class="pi-shine"></div>
+      </div>
+
+      <div class="pi-glow"></div>
+
+      <div class="pi-overlay">
+        <div>
+          <div class="pi-lbl"></div>
+          <div class="pi-cat"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- IMAGE -->
+    <div class="pi">
+      <div class="pi-bg bg5" style="
+        min-height:200px;
+        background:url('https://plain-apac-prod-public.komododecks.com/202605/26/UlA8yfCp8F9tzcY0oo7J/image.jpg') center/cover no-repeat;
+      ">
+        <div class="pi-shine"></div>
+      </div>
+
+      <div class="pi-glow"></div>
+
+      <div class="pi-overlay">
+        <div>
+          <div class="pi-lbl"></div>
+          <div class="pi-cat">de</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="about-strip rv2">
+    
+    <div class="about-av" style="
+      background:url('https://plain-apac-prod-public.komododecks.com/202605/26/fHajK1S9SQpnerlX6lN2/image.png') center/cover no-repeat;
+    "></div>
+
+    <div style="flex:1;min-width:240px">
+      <div style="
+        font-family:var(--font-h);
+        font-weight:800;
+        font-size:1.5rem;
+        margin-bottom:9px
+      ">
+        Hey, I'm 
+        <span style="
+          background:linear-gradient(135deg,var(--p),var(--p2));
+          -webkit-background-clip:text;
+          -webkit-text-fill-color:transparent
+        ">
+          Drisyant
+        </span>
+      </div>
+
+      <div style="
+        color:var(--txt2);
+        font-size:.92rem;
+        line-height:1.77;
+        max-width:560px
+      ">
+        Creative director, video editor & colorist with 5+ years of experience. Worked with top YouTubers, brands & filmmakers. Now packaging my best tools so you can create at the same level — instantly.
+      </div>
+    </div>
+
+    <div class="about-nums">
+      <div class="anum">
+        <div class="anum-n">5+</div>
+        <div class="anum-l">Years</div>
+      </div>
+
+      <div class="anum">
+        <div class="anum-n">50+</div>
+        <div class="anum-l">Packs</div>
+      </div>
+
+      <div class="anum">
+        <div class="anum-n">200+</div>
+        <div class="anum-l">Clients</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="glow-line"></div>
+
+<!-- ══════════════════════════
+  §2 VIDEOS & THUMBNAILS
+══════════════════════════ -->
+<div class="sec-dark" id="media">
+<div class="sec">
+  <div class="rv">
+    <div class="tag">Content</div>
+    <h2 class="sh">Videos & Thumbnails</h2>
+    <p class="ss">Watch my latest edits or browse the thumbnails I've designed for creators.</p>
+  </div>
+
+  <div class="media-tabs rv">
+    <button class="mt on" onclick="switchM('vids',this)">🎥 Videos</button>
+    <button class="mt" onclick="switchM('tns',this)">🖼️ Thumbnails</button>
+  </div>
+
+  <div class="vids-wrap on rv2" id="vids-wrap">
+    <div class="vg">
+      <div class="vc"><video class="vt" src="https://v1.pinimg.com/videos/iht/expMp4/cd/0d/19/cd0d196a1979aa1808417c6fd640be08_720w.mp4" autoplay muted loop playsinline></video></div>
+      <div class="vc"><video class="vt" src="https://v1.pinimg.com/videos/iht/expMp4/a9/d1/43/a9d143d404370237959bf0aebf6e788d_720w.mp4" autoplay muted loop playsinline></video></div>
+      <div class="vc"><video class="vt" src="https://www.image2url.com/r2/default/videos/1779221844591-5209c034-b438-4bce-8ba0-f15e9693b94f.mp4" autoplay muted loop playsinline></video></div>
+      <div class="vc"><video class="vt" src="https://www.image2url.com/r2/default/videos/1778262198273-450239e2-25fe-4bf8-b845-cc0cee378815.mp4" autoplay muted loop playsinline></video></div>
+    </div>
+  </div>
+
+  <div class="tns-wrap rv2" id="tns-wrap">
+    <div class="tn-grid">
+      <div class="tn">
+        <div class="tn-in" style="background:url('https://plain-apac-prod-public.komododecks.com/202606/04/bvLmQNVtBl0pgmm2H6uV/image.png') center/cover no-repeat;">
+          <div class="tn-shine"></div>
+        </div>
+      </div>
+      
+      <div class="tn">
+        <div class="tn-in" style="background:url('https://i.pinimg.com/736x/ab/c3/ac/abc3ac0001bb2425a96c01919c6a42c3.jpg') center/cover no-repeat;">
+          <div class="tn-shine"></div>
+        </div>
+      </div>
+      
+      <div class="tn">
+        <div class="tn-in" style="background:url('https://i.pinimg.com/736x/18/53/17/185317e70390054da58de0a05c8d3bcd.jpg') center/cover no-repeat;">
+          <div class="tn-shine"></div>
+        </div>
+      </div>
+      
+      <div class="tn">
+        <div class="tn-in" style="background:url('https://i.pinimg.com/1200x/c9/7a/4f/c97a4f5d5a588db24e1bed182ef622be.jpg') center/cover no-repeat;">
+          <div class="tn-shine"></div>
+        </div>
+      </div>
+      
+      <div class="tn">
+        <div class="tn-in" style="background:url('https://i.pinimg.com/736x/15/82/e9/1582e9dc9548a15dad4765d09e64216c.jpg') center/cover no-repeat;">
+          <div class="tn-shine"></div>
+        </div>
+      </div>
+      
+      <div class="tn">
+        <div class="tn-in" style="background:url('https://plain-apac-prod-public.komododecks.com/202606/04/YyickQet3U4mjitNEY2C/image.png') center/cover no-repeat;">
+          <div class="tn-shine"></div>
+        </div>
+      </div>
+      
+      <div class="tn">
+        <div class="tn-in" style="background:url('https://i.pinimg.com/1200x/3e/d8/f9/3ed8f9a3c934f4b45b53a19c0de1fab3.jpg') center/cover no-repeat;">
+          <div class="tn-shine"></div>
+        </div>
+      </div>
+      
+      <div class="tn">
+        <div class="tn-in" style="background:url('https://i.pinimg.com/736x/65/d5/b1/65d5b136cde4267158069efe2017116f.jpg') center/cover no-repeat;">
+          <div class="tn-shine"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="glow-line"></div>
+
+
+<div class="glow-line"></div>
+
+<!-- ══════════════════════════
+  §3 STORE
+══════════════════════════ -->
+<section class="sec" id="store">
+  <div class="rv">
+    <div class="tag">Premium Store</div>
+    <h2 class="sh">Shop Creative Assets</h2>
+    <p class="ss">Hand-crafted packs for video editors & content creators. Instant digital delivery to your inbox.</p>
+  </div>
+
+  <div class="store-tabs rv">
+    <button class="st on" onclick="fShop('all',this)">All Products</button>
+    <button class="st" onclick="fShop('cc',this)">CC Packs</button>
+    <button class="st" onclick="fShop('pack',this)">Editing Packs</button>
+    <button class="st" onclick="fShop('lut',this)">LUT Bundles</button>
+  </div>
+
+  <div class="sg" id="sg">
+    <div class="pc rv2" data-c="cc" onclick="openModal('🖼️','Premium CC Pack Preview','30 cinematic color presets. Includes instant look for reels, shorts & YouTube.','₹599','₹1,299')">
+
+        <div class="pt" style="background:linear-gradient(135deg,#080420,#1c0c60,#30169e)">
+        <div class="pglow" style="opacity:1; background:radial-gradient(ellipse 80% 50% at 50% 100%,rgba(124,92,252,.35),transparent)"></div>
+        <img src="https://www.image2url.com/r2/default/images/1778884392155-dabfab72-234b-482a-b9ed-bcf8a228064e.jpg" alt="Premium CC Pack Preview" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;opacity:1" />
+        <div class="psh" style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.08) 0%,transparent 55%);"></div>
+        <span style="position:relative;z-index:2"></span>
+      </div>
+      <div class="pbadge pb-n">✨ Featured</div>
+      <div class="pb"><div class="pcat">Crystal Clear CC</div><div class="pname">Preview CC Pack</div><div class="pdesc">10+ Instant cinematic color look preview—perfect to test before you buy.</div><div class="pfoot"><div class="pprice"><span class="pold">₹1,299</span>₹599</div><button class="bb" onclick="event.stopPropagation();openModal('🖼️','Preview CC Pack','30 cinematic color presets. Includes instant look for reels, shorts & YouTube.','₹599','₹1,299')">Buy Now</button></div></div>
+    </div>
+    <div class="pc rv2" data-c="cc" onclick="openModal('🎨','Premium CC Pack Vol.1','40+ professional color correction presets. Works on Premiere Pro, DaVinci Resolve & FCPX. Instant cinematic look.','₹999','₹1,599')">
+      <div class="pt" style="background:linear-gradient(135deg,#0e0430,#281080,#4418c8)"><img src="https://www.image2url.com/r2/default/images/1779218349510-1af6d897-6ec4-497d-901c-e975d9c59b73.png" alt="Premium CC Pack Preview" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;opacity:1" /><span>🎨</span><div class="psh"></div><div class="pglow"></div></div>
+      <div class="pbadge pb-b">⭐ Best Seller</div>
+      <div class="pb"><div class="pcat">Color Correction</div><div class="pname">Premium CC Pack Vol.1</div><div class="pdesc">40+ professional grades for After Effect & Preimere Pro.</div><div class="pfoot"><div class="pprice"><span class="pold">₹1,599</span>₹999</div><button class="bb" onclick="event.stopPropagation();openModal('🎨','Premium CC Pack Vol.1','40+ professional color correction presets for Premiere Pro, Resolve & FCPX.','₹999','₹1,599')">Buy Now</button></div></div>
+    </div>
+
+    <div class="pc rv2" data-c="pack" onclick="openModal('⚡','Reels Editing Pack Pro','100+ transitions, SFX, text animations & overlays. Built for viral Reels & Shorts.','₹399','₹899')">
+      <div class="pt" style="background:linear-gradient(135deg,#041630,#103060,#1848a0)"><img src="https://www.image2url.com/r2/default/images/1778884291368-c7ff8916-858b-4667-b585-28f057e65da3.jpeg" alt="Premium CC Pack Preview" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;opacity:1" /><span>⚡</span><div class="psh"></div><div class="pglow"></div></div>
+      <div class="pbadge pb-h">🔥 Hot</div>
+      <div class="pb"><div class="pcat">Editing Pack</div><div class="pname">Reels Editing Pack Pro</div><div class="pdesc">100+ transitions, SFX, text animations & overlays. Built for viral content.</div><div class="pfoot"><div class="pprice"><span class="pold">₹899</span>₹399</div><button class="bb" onclick="event.stopPropagation();openModal('⚡','Reels Editing Pack Pro','100+ transitions, SFX, text animations & overlays for viral Reels & Shorts.','₹399','₹899')">Buy Now</button></div></div>
+    </div>
+    <div class="pc rv2" data-c="lut" onclick="openModal('🎬','Cinematic LUT Bundle','25 premium LUTs used in real productions. Film emulation for Sony, Canon, Fuji & LOG footage.','₹799','₹1,799')">
+      <div class="pt" style="background:linear-gradient(135deg,#080420,#1c0c60,#30169e)"><img src="https://cdn.phototourl.com/free/2026-05-15-4a3beb0f-fda9-4d6d-b38f-73f8fe2db2bc.jpg" alt="Premium CC Pack Preview" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;opacity:1" /><span>🎬</span><div class="psh"></div><div class="pglow"></div></div>
+      <div class="pbadge pb-n">✨ New</div>
+      <div class="pb"><div class="pcat">LUT Bundle</div><div class="pname">Cinematic LUT Bundle</div><div class="pdesc">25+ premium LUTs for film emulation. Works on Sony, Canon, Fuji & LOG footage.</div><div class="pfoot"><div class="pprice"><span class="pold">₹1,799</span>₹799</div><button class="bb" onclick="event.stopPropagation();openModal('🎬','Cinematic LUT Bundle','25 premium LUTs for film emulation. Works on Sony, Canon, Fuji & LOG.','₹799','₹1,799')">Buy Now</button></div></div>
+    </div>
+    <div class="pc rv2" data-c="cc" onclick="openModal('🌑','Moody Dark CC Pack','30 deep cinematic grades inspired by A24 films. Perfect for fashion & storytelling.','₹499','₹1,199')">
+      <div class="pt" style="background:linear-gradient(135deg,#28040a,#6c1020,#b01c34)"><img src="https://www.image2url.com/r2/default/images/1779218763921-65a87700-fc4d-49b5-a08c-4d4f7f068992.png" alt="Premium CC Pack Preview" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;opacity:1" /><span>🌑</span><div class="psh"></div><div class="pglow"></div></div>
+      <div class="pb"><div class="pcat">Motion Graphics</div><div class="pname">10+ Saas Edit Project Files</div><div class="pdesc">All Type Motion Graphic & SaaS animation Project Files Pack</div><div class="pfoot"><div class="pprice"><span class="pold">₹1,199</span>₹499</div><button class="bb" onclick="event.stopPropagation();openModal('🌑','Moody Dark CC Pack','30 deep cinematic grades inspired by A24 films.','₹499','₹1,199')">Buy Now</button></div></div>
+    </div>
+    <div class="pc rv2" data-c="pack" onclick="openModal('🎵','YouTube Mega Pack','Intros, outros, lower thirds, transitions & 200+ sound effects for YouTube.','₹899','₹2,299')">
+      <div class="pt" style="background:linear-gradient(135deg,#201004,#5c3010,#9a5018)"><img src="https://www.image2url.com/r2/default/images/1778886589230-0aaa458a-d8b4-4525-8f6a-bb3a5d458adc.png" alt="Premium CC Pack Preview" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;opacity:1" /><span>🎵</span><div class="psh"></div><div class="pglow"></div></div>
+      <div class="pbadge pb-h">🔥 Hot</div>
+      <div class="pb"><div class="pcat">Editing Pack</div><div class="pname">Editing Apps & Plugins</div><div class="pdesc">20+ All Editing Software & Plugins At Cheap Price</div><div class="pfoot"><div class="pprice"><span class="pold">₹2,299</span>₹899</div><button class="bb" onclick="event.stopPropagation();openModal('🎵','YouTube Mega Pack','Intros, outros, lower thirds, transitions & 200+ sound effects.','₹899','₹2,299')">Buy Now</button></div></div>
+    </div>
+  </div>
+
+  <!-- Features -->
+  <div style="margin-top:72px">
+    <div class="rv"><h3 style="font-family:var(--font-h);font-size:1.6rem;font-weight:800;margin-bottom:40px;letter-spacing:-.03em">Why Creators Choose Drisyant Studio</h3></div>
+    <div class="feat-grid">
+      <div class="feat rv2"><div class="ficon">⚡</div><div class="ft">Instant Delivery</div><div class="fd">Download immediately after purchase. Files delivered straight to your inbox. No waiting.</div></div>
+      <div class="feat rv2"><div class="ficon">🎨</div><div class="ft">Pro-Grade Quality</div><div class="fd">Every preset & LUT is professionally graded and tested across multiple camera profiles.</div></div>
+      <div class="feat rv2"><div class="ficon">🔄</div><div class="ft">Multi-App Support</div><div class="fd">Works with Premiere Pro, DaVinci Resolve, After Effects, Final Cut Pro & Lightroom.</div></div>
+      <div class="feat rv2"><div class="ficon">📦</div><div class="ft">Free Updates Forever</div><div class="fd">Buy once, receive all future updates free. New packs and improvements added regularly.</div></div>
+      <div class="feat rv2"><div class="ficon">💬</div><div class="ft">Creator Support</div><div class="fd">Real support from a real editor. DM on Instagram and get help within hours.</div></div>
+      <div class="feat rv2"><div class="ficon">🛡️</div><div class="ft">No-Money Back</div><div class="fd">All purchases are final. No money will be refunded after payment under any circumstances.</div></div>
+    </div>
+  </div>
+</section> 
+
+<div class="glow-line"></div>
+
+<!-- ══════════════════════════
+  §4 REVIEWS
+══════════════════════════ -->
+<div class="sec-dark" id="reviews">
+<div class="sec">
+  <div class="rv" style="text-align:center;margin-bottom:52px">
+    <div class="tag" style="justify-content:center">Reviews</div>
+    <h2 class="sh">Creators Love It</h2>
+    <p class="ss" style="margin:0 auto;text-align:center">Real feedback from editors, YouTubers & content creators worldwide.</p>
+  </div>
+
+  <div class="rat-sum rv2">
+    <div style="text-align:center;min-width:110px">
+      <div class="rb">4.9</div>
+      <div class="r-stars">★★★★★</div>
+      <div class="r-total">2,400+ Reviews</div>
+    </div>
+    <div class="r-bars">
+      <div class="rbar"><span style="width:14px;text-align:right">5</span><div class="rb-t"><div class="rb-f" style="--w:88%"></div></div><span style="width:34px;text-align:right">88%</span></div>
+      <div class="rbar"><span style="width:14px;text-align:right">4</span><div class="rb-t"><div class="rb-f" style="--w:9%;background:linear-gradient(90deg,var(--p),var(--p3))"></div></div><span style="width:34px;text-align:right">9%</span></div>
+      <div class="rbar"><span style="width:14px;text-align:right">3</span><div class="rb-t"><div class="rb-f" style="--w:2%;background:var(--muted)"></div></div><span style="width:34px;text-align:right">2%</span></div>
+      <div class="rbar"><span style="width:14px;text-align:right">2</span><div class="rb-t"><div class="rb-f" style="--w:1%;background:var(--muted)"></div></div><span style="width:34px;text-align:right">1%</span></div>
+      <div class="rbar"><span style="width:14px;text-align:right">1</span><div class="rb-t"><div class="rb-f" style="--w:0%;background:var(--red)"></div></div><span style="width:34px;text-align:right">0%</span></div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;min-width:200px">
+      <div style="text-align:center;background:rgba(124,92,252,.1);border:1px solid rgba(124,92,252,.18);border-radius:12px;padding:12px"><div style="font-family:var(--font-h);font-weight:800;font-size:1.4rem;color:var(--p)">98%</div><div style="font-size:.7rem;color:var(--muted)">Would Buy Again</div></div>
+      <div style="text-align:center;background:rgba(61,255,160,.08);border:1px solid rgba(61,255,160,.18);border-radius:12px;padding:12px"><div style="font-family:var(--font-h);font-weight:800;font-size:1.4rem;color:var(--green)">50+</div><div style="font-size:.7rem;color:var(--muted)">Countries</div></div>
+    </div>
+  </div>
+
+  <div class="rg">
+    <div class="rc rv2"><div class="r-s">★★★★★</div><div class="r-t">"The CC Pack Vol.1 completely transformed my workflow. My videos look 10x more professional. Worth every rupee!"</div><div class="r-a"><div class="rav ra1">R</div><div><div class="rn">Rahul Sharma</div><div class="rr">YouTuber · 500K subscribers</div></div></div></div>
+    <div class="rc rv2"><div class="r-s">★★★★★</div><div class="r-t">"Best editing pack I've ever purchased. The Reels pack helped my client go from 2K to 80K in 30 days 🔥"</div><div class="r-a"><div class="rav ra2">P</div><div><div class="rn">Priya Nair</div><div class="rr">Content Creator · Mumbai</div></div></div></div>
+    <div class="rc rv2"><div class="r-s">★★★★★</div><div class="r-t">"The Ultimate Bundle is an insane deal. I use these on every single project now. Client satisfaction went through the roof."</div><div class="r-a"><div class="rav ra3">A</div><div><div class="rn">Aditya Verma</div><div class="rr">Freelance Editor · Delhi</div></div></div></div>
+    <div class="rc rv2"><div class="r-s">★★★★★</div><div class="r-t">"Drisyant's LUT bundle gave me the film look I was chasing for months. Instant cinema vibes right out of the box."</div><div class="r-a"><div class="rav ra4">S</div><div><div class="rn">Sneha Kapoor</div><div class="rr">Filmmaker · Bangalore</div></div></div></div>
+    <div class="rc rv2"><div class="r-s">★★★★★</div><div class="r-t">"Fast delivery, great quality, super responsive support. Already bought 3 packs. Will 100% buy more. Keep it up bhai!"</div><div class="r-a"><div class="rav ra5">K</div><div><div class="rn">Karan Mehta</div><div class="rr">Video Editor · Pune</div></div></div></div>
+    <div class="rc rv2"><div class="r-s">★★★★★</div><div class="r-t">"These presets work flawlessly with Sony A7III LOG footage. The moody pack is stunning. Highly recommend to everyone!"</div><div class="r-a"><div class="rav ra6">N</div><div><div class="rn">Neha Joshi</div><div class="rr">Photographer & Editor · Chennai</div></div></div></div>
+  </div>
+</div>
+</div>
+
+<div class="glow-line"></div>
+
+<!-- ══════════════════════════
+  §5 CONTACT
+══════════════════════════ -->
+<section class="sec" id="contact">
+  <div class="rv" style="margin-bottom:52px">
+    <div class="tag">Get In Touch</div>
+    <h2 class="sh">Let's Work Together</h2>
+  </div>
+  <div class="contact-grid">
+    <div class="c-info rv">
+      <p class="c-sub">Whether you need a custom edit, collab, or just want to say hi — my DMs are always open. Typically reply within a few hours.</p>
+      <div class="c-links">
+        <a href="https://www.instagram.com/drisyant.fx/" target="_blank" class="cl"><div class="c-ico ic-ig">📸</div><div><div class="c-name">Instagram</div><div class="c-handle">@drisyant.fx</div></div><span style="margin-left:auto;color:var(--muted)">↗</span></a>
+        <a href="mailto:hello@drisyant6@gmail.com" class="cl"><div class="c-ico ic-em">✉️</div><div><div class="c-name">Email</div><div class="c-handle">drisyant6@gmail.com</div></div><span style="margin-left:auto;color:var(--muted)">↗</span></a>
+        <a href="https://wa.me/6399591949" target="_blank" class="cl"><div class="c-ico ic-wa">💬</div><div><div class="c-name">WhatsApp</div><div class="c-handle">Quick order queries</div></div><span style="margin-left:auto;color:var(--muted)">↗</span></a>
+      </div>
+    </div>
+    <div class="cform rv2">
+      <div class="cf-h">Send a Message</div>
+      <div class="cf-s">For custom projects, collabs & bulk orders</div>
+      <div class="cf-row">
+        <input class="inp" type="text" placeholder="Your Name" />
+        <input class="inp" type="email" placeholder="Email Address" />
+      </div>
+      <input class="inp" style="margin-bottom:12px" type="text" placeholder="Subject (e.g. Custom Edit, Collab)" />
+      <textarea class="inp" placeholder="Your message..."></textarea>
+      <button class="cf-btn" onclick="handleContact()">Send Message 🚀</button>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BLOCK -->
+<div class="cta-block rv2">
+  <div class="tag" style="justify-content:center">Ready to Level Up?</div>
+  <h2 class="sh" style="font-size:clamp(2rem,5vw,4rem);text-align:center;letter-spacing:-.05em">Start Creating <br><span style="background:linear-gradient(135deg,var(--p),var(--p2),var(--p3),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-size:200%">Like a Pro Today</span></h2>
+  <p style="color:var(--txt2);text-align:center;max-width:480px;margin:0 auto 40px;font-size:1rem;line-height:1.77">Join 2,400+ creators already using Drisyant Studio assets to make their best work.</p>
+  <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
+    <a href="#store" class="btn-main">🎨 Shop All Packs</a>
+    <a href="#contact" class="btn-out">💬 Let's Collab</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer style="position:relative;z-index:3">
+  <div class="footer">
+    <div class="fl">Drisyant</div>
+    <div class="flinks">
+      <a href="#portfolio">Portfolio</a>
+      <a href="#media">Videos</a>
+      <a href="#store">Store</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="socs">
+      <a href="#" class="so">📸</a>
+      <a href="#" class="so">▶️</a>
+      <a href="#" class="so">🎵</a>
+    </div>
+    <div class="fcopy">© 2025 Drisyant · Made with 🔥 in India</div>
+  </div>
+</footer>
+
+<script>
+/* ══════════════════════════════════
+   ANIMATED CANVAS BACKGROUND
+══════════════════════════════════ */
+const canvas=document.getElementById('bg-canvas');
+const ctx=canvas.getContext('2d');
+let W,H,orbs=[];
+
+function resize(){
+  W=canvas.width=window.innerWidth;
+  H=canvas.height=window.innerHeight;
+}
+resize();window.addEventListener('resize',resize);
+
+// Build ambient orbs
+const orbCfg=[
+  {x:.15,y:.2,r:380,c:'rgba(124,92,252,.18)',s:.4},
+  {x:.85,y:.15,r:320,c:'rgba(196,92,252,.14)',s:.35},
+  {x:.5,y:.7,r:280,c:'rgba(92,244,252,.1)',s:.3},
+  {x:.1,y:.8,r:240,c:'rgba(124,92,252,.1)',s:.45},
+  {x:.9,y:.75,r:200,c:'rgba(255,61,110,.08)',s:.38},
+];
+orbCfg.forEach((o,i)=>orbs.push({...o,t:Math.random()*Math.PI*2,phase:i}));
+
+function drawBg(){
+  ctx.clearRect(0,0,W,H);
+  // subtle grid
+  ctx.strokeStyle='rgba(124,92,252,.04)';ctx.lineWidth=1;
+  const gs=80;
+  for(let x=0;x<W;x+=gs){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke()}
+  for(let y=0;y<H;y+=gs){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke()}
+  // orbs
+  orbs.forEach(o=>{
+    o.t+=.003*o.s;
+    const cx=o.x*W+Math.sin(o.t)*60,cy=o.y*H+Math.cos(o.t*.7)*50;
+    const g=ctx.createRadialGradient(cx,cy,0,cx,cy,o.r);
+    g.addColorStop(0,o.c);g.addColorStop(1,'transparent');
+    ctx.beginPath();ctx.arc(cx,cy,o.r,0,Math.PI*2);
+    ctx.fillStyle=g;ctx.fill();
+  });
+  // scan line
+  const sl=(Date.now()*.04)%H;
+  const sg=ctx.createLinearGradient(0,sl-40,0,sl+40);
+  sg.addColorStop(0,'transparent');sg.addColorStop(.5,'rgba(124,92,252,.04)');sg.addColorStop(1,'transparent');
+  ctx.fillStyle=sg;ctx.fillRect(0,sl-40,W,80);
+
+  requestAnimationFrame(drawBg);
+}
+drawBg();
+
+/* ══════════════════════════════════
+   PARTICLES
+══════════════════════════════════ */
+function spawnParticle(){
+  const p=document.createElement('div');
+  p.className='particle';
+  const sz=Math.random()*3+1;
+  const colors=['rgba(124,92,252,','rgba(196,92,252,','rgba(92,244,252,','rgba(255,209,102,'];
+  const c=colors[Math.floor(Math.random()*colors.length)];
+  p.style.cssText=`
+    width:${sz}px;height:${sz}px;
+    left:${Math.random()*100}vw;
+    background:${c}.8)};
+    box-shadow:0 0 ${sz*4}px ${c}.6)};
+    animation-duration:${Math.random()*8+6}s;
+    animation-delay:${Math.random()*3}s;
+  `;
+  document.body.appendChild(p);
+  setTimeout(()=>p.remove(),(8+6+3)*1000);
+}
+setInterval(spawnParticle,600);
+for(let i=0;i<12;i++)setTimeout(spawnParticle,i*200);
+
+/* ══════════════════════════════════
+   CURSOR
+══════════════════════════════════ */
+const dot=document.getElementById('dot'),ring=document.getElementById('ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.transform=`translate(${mx-4}px,${my-4}px)`});
+(function loop(){rx+=(mx-rx)*.13;ry+=(my-ry)*.13;ring.style.transform=`translate(${rx-16}px,${ry-16}px)`;requestAnimationFrame(loop)})();
+document.querySelectorAll('a,button,.pc,.vc,.rc,.feat,.pi,.tn').forEach(el=>{
+  el.addEventListener('mouseenter',()=>ring.classList.add('hov'));
+  el.addEventListener('mouseleave',()=>ring.classList.remove('hov'));
+});
+
+/* ══════════════════════════════════
+   SCROLL REVEAL
+══════════════════════════════════ */
+const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('on')}),{threshold:.07});
+document.querySelectorAll('.rv,.rv2').forEach(el=>io.observe(el));
+
+/* ══════════════════════════════════
+   RATING BARS ANIMATE
+══════════════════════════════════ */
+const rio=new IntersectionObserver(e=>e.forEach(x=>{
+  if(x.isIntersecting){
+    x.target.querySelectorAll('.rb-f').forEach(b=>{b.classList.add('on')});
+    rio.unobserve(x.target);
+  }
+}),{threshold:.3});
+document.querySelector('.rat-sum')&&rio.observe(document.querySelector('.rat-sum'));
+
+/* ══════════════════════════════════
+   COUNT UP
+══════════════════════════════════ */
+const cio=new IntersectionObserver(e=>e.forEach(x=>{
+  if(x.isIntersecting){
+    x.target.querySelectorAll('[data-count]').forEach(el=>{
+      const t=+el.dataset.count;let c=0;const s=t/60;
+      const iv=setInterval(()=>{c=Math.min(c+s,t);el.textContent=Math.floor(c)+(c>=t?'+':'');if(c>=t)clearInterval(iv)},14);
+    });
+    cio.unobserve(x.target);
+  }
+}),{threshold:.5});
+document.querySelector('.stats-row')&&cio.observe(document.querySelector('.stats-row'));
+
+/* ══════════════════════════════════
+   MEDIA TABS
+══════════════════════════════════ */
+function switchM(type,btn){
+  document.querySelectorAll('.mt').forEach(t=>t.classList.remove('on'));
+  btn.classList.add('on');
+  document.getElementById('vids-wrap').classList.toggle('on',type==='vids');
+  document.getElementById('tns-wrap').classList.toggle('on',type==='tns');
+}
+
+/* ══════════════════════════════════
+   SHOP FILTER
+══════════════════════════════════ */
+function fShop(cat,btn){
+  document.querySelectorAll('.st').forEach(t=>t.classList.remove('on'));
+  btn.classList.add('on');
+  document.querySelectorAll('.pc').forEach(p=>{
+    p.style.display=(cat==='all'||p.dataset.c===cat)?'block':'none';
+  });
+}
+
+/* ══════════════════════════════════
+   3D PRODUCT TILT
+══════════════════════════════════ */
+document.querySelectorAll('.pc').forEach(c=>{
+  c.addEventListener('mousemove',e=>{
+    const r=c.getBoundingClientRect(),
+          cx=(e.clientX-r.left)/r.width-.5,
+          cy=(e.clientY-r.top)/r.height-.5;
+    c.style.transform=`translateY(-10px) scale(1.015) rotateY(${cx*12}deg) rotateX(${-cy*12}deg)`;
+  });
+  c.addEventListener('mouseleave',()=>c.style.transform='');
+});
+
+/* ══════════════════════════════════
+   MODAL
+══════════════════════════════════ */
+function openModal(ico,h,p,price,old){
+  document.getElementById('m-ico').textContent=ico;
+  document.getElementById('m-h').textContent=h;
+  document.getElementById('m-p').textContent=p;
+  document.getElementById('m-pr').innerHTML=`<span style="font-size:.85rem;-webkit-text-fill-color:var(--muted);text-decoration:line-through;font-family:var(--font-b);font-weight:400">${old}</span> ${price}`;
+  document.getElementById('ov').classList.add('open');
+}
+function closeModal(){document.getElementById('ov').classList.remove('open')}
+document.getElementById('ov').addEventListener('click',e=>{if(e.target===document.getElementById('ov'))closeModal()});
+function doPurchase(){closeModal();toast('🎉 Order placed! Check your email soon.')}
+
+/* ══════════════════════════════════
+   CONTACT
+══════════════════════════════════ */
+function handleContact(){toast('📬 Message sent! I\'ll reply very soon.')}
+
+/* ══════════════════════════════════
+   TOAST
+══════════════════════════════════ */
+function toast(msg,ico='✅'){
+  const t=document.getElementById('toast');
+  document.getElementById('t-ico').textContent=ico;
+  document.getElementById('t-msg').textContent=msg;
+  t.classList.add('on');
+  setTimeout(()=>t.classList.remove('on'),3800);
+}
+
+
+
+/* ══════════════════════════════════
+   SMOOTH SCROLL
+══════════════════════════════════ */
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    e.preventDefault();
+    const el=document.querySelector(a.getAttribute('href'));
+    if(el)el.scrollIntoView({behavior:'smooth'});
+  });
+});
+
+/* ══════════════════════════════════
+   GLITCH TEXT effect on logo hover
+══════════════════════════════════ */
+const logo=document.querySelector('.logo');
+let glitchInt;
+logo.addEventListener('mouseenter',()=>{
+  glitchInt=setInterval(()=>{
+    logo.style.textShadow=`${Math.random()*4-2}px 0 rgba(92,244,252,.6),${Math.random()*-4+2}px 0 rgba(196,92,252,.6)`;
+  },60);
+});
+logo.addEventListener('mouseleave',()=>{
+  clearInterval(glitchInt);logo.style.textShadow='';
+});
+</script>
+</body>
+</html>
