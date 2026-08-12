@@ -8,6 +8,10 @@
   padding: 0;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 html,
 body,
 #root {
@@ -16,7 +20,7 @@ body,
 }
 
 .hero-heading {
-  background: linear-gradient(180deg, #646973 0%, #bbccd7 100%);
+  background: linear-gradient(180deg, #6b6b6b 0%, #ffffff 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;

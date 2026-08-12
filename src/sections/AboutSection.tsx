@@ -75,7 +75,7 @@ export default function AboutSection() {
         <div className="flex flex-col items-center gap-16 sm:gap-20 md:gap-24">
           <AnimatedText
             text={ABOUT_TEXT}
-            className="text-[#D7E2EA] font-medium text-center leading-relaxed max-w-[560px]"
+            className="text-[#F2F2F2] font-medium text-center leading-relaxed max-w-[560px]"
             style={{ fontSize: 'clamp(1rem, 2vw, 1.35rem)' }}
           />
           <ContactButton />

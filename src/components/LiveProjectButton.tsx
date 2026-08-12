@@ -6,7 +6,7 @@ export default function LiveProjectButton({ className = '' }: LiveProjectButtonP
   return (
     <button
       type="button"
-      className={`rounded-full border-2 border-[#D7E2EA] px-8 py-3 sm:px-10 sm:py-3.5 text-sm sm:text-base text-[#D7E2EA] font-medium uppercase tracking-widest transition-colors duration-200 hover:bg-[#D7E2EA]/10 ${className}`}
+      className={`rounded-full border-2 border-[#F2F2F2] px-8 py-3 sm:px-10 sm:py-3.5 text-sm sm:text-base text-[#F2F2F2] font-medium uppercase tracking-widest transition-colors duration-200 hover:bg-[#F2F2F2]/10 ${className}`}
     >
       Live Project
     </button>

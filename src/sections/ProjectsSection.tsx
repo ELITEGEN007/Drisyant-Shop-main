@@ -103,7 +103,7 @@ function MediaTile({
   // empty thumbnail slot -- left blank on purpose, drop a thumbnail in later
   return (
     <div
-      className={`${className} border border-dashed border-[#D7E2EA]/20`}
+      className={`${className} border border-dashed border-[#F2F2F2]/20`}
       style={style}
     />
   );
@@ -129,21 +129,21 @@ function ProjectCard({
 >
       <motion.div
   style={{ scale }}
-  className="relative w-full rounded-[44px] border-2 border-[#D7E2EA] bg-[#0C0C0C] px-6 pt-6 pb-5 md:px-8 md:pt-8 md:pb-6 origin-top"
+  className="relative w-full rounded-[44px] border-2 border-[#F2F2F2] bg-[#0C0C0C] px-6 pt-6 pb-5 md:px-8 md:pt-8 md:pb-6 origin-top"
 >
         {/* Top row */}
         <div className="flex flex-wrap items-center gap-4 md:gap-6 mb-6 md:mb-8">
           <span
-            className="text-[#D7E2EA] font-black leading-none"
+            className="text-[#F2F2F2] font-black leading-none"
             style={{ fontSize: 'clamp(3rem, 10vw, 140px)' }}
           >
             {project.number}
           </span>
           <div className="flex flex-col gap-1">
-            <span className="text-[#D7E2EA] uppercase tracking-widest text-xs sm:text-sm opacity-60 font-light">
+            <span className="text-[#F2F2F2] uppercase tracking-widest text-xs sm:text-sm opacity-60 font-light">
               {project.category}
             </span>
-            <span className="text-[#D7E2EA] uppercase font-medium text-lg sm:text-2xl md:text-3xl">
+            <span className="text-[#F2F2F2] uppercase font-medium text-lg sm:text-2xl md:text-3xl">
               {project.name}
             </span>
           </div>
