@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 140" width="480" height="140">
+  <defs>
+    <linearGradient id="brandGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="60%" stop-color="#F2E6FF"/>
+      <stop offset="100%" stop-color="#DAC6EB"/>
+    </linearGradient>
+  </defs>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital,wght@0,400;1,400&amp;family=Jost:wght@400;500;600&amp;display=swap');
+    .brand-main {
+      font-family: 'Instrument Serif', Georgia, serif;
+      font-size: 68px;
+      font-weight: 400;
+      fill: #FFFFFF;
+      letter-spacing: -0.5px;
+    }
+    .brand-italic {
+      font-family: 'Instrument Serif', Georgia, serif;
+      font-style: italic;
+      font-size: 68px;
+      fill: #DAC6EB;
+      letter-spacing: 0.5px;
+    }
+    .brand-sub {
+      font-family: 'Jost', -apple-system, sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      fill: #C1E4F7;
+      letter-spacing: 0.38em;
+      text-transform: uppercase;
+      opacity: 0.9;
+    }
+    .star-accent {
+      fill: #DAC6EB;
+    }
+  </style>
+  
+  <!-- Subtle decorative sparkle star -->
+  <path class="star-accent" transform="translate(240, 20) scale(0.65)" d="M0 -14 C0 -4 4 0 14 0 C4 0 0 4 0 14 C0 4 -4 0 -14 0 C-4 0 0 -4 0 -14 Z" />
+  
+  <!-- Main Brand Title -->
+  <text x="240" y="80" text-anchor="middle">
+    <tspan class="brand-main">Drisyant </tspan>
+    <tspan class="brand-italic">Design</tspan>
+  </text>
+  
+  <!-- Sleek Accent Subline -->
+  <line x1="85" y1="112" x2="145" y2="112" stroke="rgba(255,255,255,0.35)" stroke-width="1"/>
+  <text x="240" y="116" text-anchor="middle" class="brand-sub">DESIGNER &amp; EDITOR</text>
+  <line x1="335" y1="112" x2="395" y2="112" stroke="rgba(255,255,255,0.35)" stroke-width="1"/>
+</svg>
